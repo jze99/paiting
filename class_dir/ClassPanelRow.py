@@ -17,6 +17,10 @@ class RowPanel(UserControl):
             icon=icons.ADD,
             text="Добавить картинку",
         )
+        self.color_picer_button = TextButton(
+            icon=icons.COLOR_LENS,
+            text="Выбрать цвет"
+        )
         
         self.grid_element = Column(
             spacing=10,
@@ -24,6 +28,7 @@ class RowPanel(UserControl):
                 Row(
                     height=40,
                     controls=[
+                        self.color_picer_button,
                         self.text_field_dsize_image,
                     ]
                 ),

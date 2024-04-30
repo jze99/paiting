@@ -2,6 +2,7 @@ from flet import*
 
 class Pixel(UserControl):  
     clic = False
+    color_paint = "#000000"
     
     def __init__(self):
         super().__init__()
@@ -27,7 +28,7 @@ class Pixel(UserControl):
         
     def PaitingPixel(self, e):
         if Pixel.clic:
-            self.interactive_pixel.bgcolor = "#000000"
+            self.interactive_pixel.bgcolor = Pixel.color_paint
             self.interactive_pixel.update()
     
     def build(self):

@@ -1,15 +1,18 @@
 from flet import *
 from class_dir.ClassPaint import GridPixel
 from class_dir.ClassPanelRow import RowPanel
-from class_dir.ClassDialog import SaveImageDialog
+from class_dir.ClassDialog import SaveImageDialog, ColorPicerDialog
 
 def viewsHendler(page):
-    save_image_dialog = SaveImageDialog(page)
-    grid_pixel = GridPixel(save_image_dialog=save_image_dialog)
-    save_image_dialog.dialog_view.on_dismiss = grid_pixel.LoadPng
+    color_picer_dialog = ColorPicerDialog(page=page)
+    save_image_dialog = SaveImageDialog(page=page)
     row_panel = RowPanel()
+    grid_pixel = GridPixel(save_image_dialog=save_image_dialog, text_field_dsize_image=row_panel.text_field_dsize_image)
+    save_image_dialog.dialog_view.on_dismiss = grid_pixel.LoadPng
     row_panel.text_field_dsize_image.on_change = grid_pixel.BuildGridView
     row_panel.loading_image_button.on_click = grid_pixel.ChecDialog
+    row_panel.color_picer_button.on_click = color_picer_dialog.open_dlg_modal
+    
     
     
     return {
