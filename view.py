@@ -12,6 +12,9 @@ def viewsHendler(page):
     row_panel.text_field_dsize_image.on_change = grid_pixel.BuildGridView
     row_panel.loading_image_button.on_click = grid_pixel.ChecDialog
     row_panel.color_picer_button.on_click = color_picer_dialog.open_dlg_modal
+    row_panel.load_II_button.on_click = grid_pixel.TempPain
+    GridPixel.ii_text = row_panel.number_text
+    
     
     
     

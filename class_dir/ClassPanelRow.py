@@ -1,6 +1,9 @@
 from flet import *
 
 class RowPanel(UserControl):
+    
+    number_text = Text(size=14)
+    
     def __init__(self):
         super().__init__()
                 
@@ -17,10 +20,16 @@ class RowPanel(UserControl):
             icon=icons.ADD,
             text="Добавить картинку",
         )
+        self.load_II_button = TextButton(
+            icon=icons.ADD,
+            text="Распознать картинку",
+        )
         self.color_picer_button = TextButton(
             icon=icons.COLOR_LENS,
             text="Выбрать цвет"
         )
+        
+
         
         self.grid_element = Column(
             spacing=10,
@@ -36,6 +45,8 @@ class RowPanel(UserControl):
                     height=40,
                     controls=[
                         self.loading_image_button,
+                        self.load_II_button,
+                        RowPanel.number_text
                     ]
                 )
             ]

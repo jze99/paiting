@@ -1,8 +1,12 @@
 from flet import*
 from PIL import Image, ImageDraw
 from class_dir.ClassPixel import Pixel
+from test import II
 
 class GridPixel(UserControl):
+    
+    ii_mem = 0
+    
     def __init__(self, save_image_dialog, text_field_dsize_image):
         super().__init__()
         
@@ -65,6 +69,26 @@ class GridPixel(UserControl):
         from PIL import Image
         interpolated_image = image.resize((28, 28), Image.BILINEAR)
         interpolated_image.save("dataset/" + self.save_image_dialog.name_file + ".png")
+        
+    def TempPain(self, e):
+        from class_dir import ClassPanelRow
+        from PIL import Image
+        import numpy as np
+        image = Image.new('RGB', (self.size, self.size)) 
+        vector = [pix.interactive_pixel.bgcolor for pix in self.grid_pixel.controls]
+        self.BuildGridView(e=e)
+        
+        for y in range(self.size):
+            for x in range(self.size):
+                index = y * self.size + x
+                color = vector[index % len(vector)]
+                image.putpixel((x, y), tuple(int(color[i:i+2], 16) for i in (1, 3, 5)))
+        
+        interpolated_image = image.resize((28, 28), Image.BILINEAR)
+        interpolated_image.save("temp.png")
+        GridPixel.ii_mem = II()
+        ClassPanelRow.RowPanel.number_text.value = str(GridPixel.ii_mem)
+        ClassPanelRow.RowPanel.number_text.update()
         
     def ChecDialog(self, e):
         self.save_image_dialog.open_dlg_modal()
